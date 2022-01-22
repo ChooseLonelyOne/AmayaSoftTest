@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 724b12520f286c84db758be0f643350f, type: 3}
+  m_Name: MidleLevel
+  m_EditorClassIdentifier: 
+  _cardData:
+  - _name: 1
+    _typeCard: 1
+    _sprite: {fileID: 1422184923334757970, guid: c183f1a3bf467e249ad3397dfe35dca9,
+      type: 3}
+  - _name: 2
+    _typeCard: 1
+    _sprite: {fileID: 1808195818850983521, guid: c183f1a3bf467e249ad3397dfe35dca9,
+      type: 3}
+  - _name: 3
+    _typeCard: 1
+    _sprite: {fileID: -7900951133411543555, guid: c183f1a3bf467e249ad3397dfe35dca9,
+      type: 3}
+  - _name: 4
+    _typeCard: 1
+    _sprite: {fileID: 2267071060405275165, guid: c183f1a3bf467e249ad3397dfe35dca9,
+      type: 3}
+  - _name: 5
+    _typeCard: 1
+    _sprite: {fileID: -7398325283844340781, guid: c183f1a3bf467e249ad3397dfe35dca9,
+      type: 3}
+  - _name: 6
+    _typeCard: 1
+    _sprite: {fileID: -7015292045520539579, guid: c183f1a3bf467e249ad3397dfe35dca9,
+      type: 3}
+  _prefab: {fileID: 4257951600556996733, guid: 0fe467bcbf6f51b4891aa43a30ae9082, type: 3}
+  _gridSizeX: 3

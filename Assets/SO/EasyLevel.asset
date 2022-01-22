@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 724b12520f286c84db758be0f643350f, type: 3}
+  m_Name: EasyLevel
+  m_EditorClassIdentifier: 
+  _cardData:
+  - _name: A
+    _typeCard: 0
+    _sprite: {fileID: 4963718625464178563, guid: 66a2cadcb6632b946820df5b1ffac8f3,
+      type: 3}
+  - _name: B
+    _typeCard: 0
+    _sprite: {fileID: 7783457984840754399, guid: 66a2cadcb6632b946820df5b1ffac8f3,
+      type: 3}
+  - _name: C
+    _typeCard: 0
+    _sprite: {fileID: 3234300448368640894, guid: 66a2cadcb6632b946820df5b1ffac8f3,
+      type: 3}
+  _prefab: {fileID: 4257951600556996733, guid: 0fe467bcbf6f51b4891aa43a30ae9082, type: 3}
+  _gridSizeX: 3
