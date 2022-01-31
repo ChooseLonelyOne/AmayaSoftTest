@@ -1,10 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class LevelChanger : MonoBehaviour
 {
     [SerializeField] private CardBundleData[] _data;
+    [SerializeField] private UnityEventCardBundleData OnCreateLevel;
+    [SerializeField] private UnityEvent OnEndGame;
+    [SerializeField] private UnityEvent OnInteractable;
 
     private int _currentDataIndex = -1;
 
@@ -16,26 +20,20 @@ public class LevelChanger : MonoBehaviour
         }
     }
 
-    private void ChangeLevel()
+    public void ChangeLevel()
     {
+        OnInteractable?.Invoke();
         if (_currentDataIndex < _data.Length - 1)
         {
             _currentDataIndex++;
-            EventBus.OnCreateLevel?.Invoke(_data[_currentDataIndex]);
+            OnCreateLevel?.Invoke(_data[_currentDataIndex]);
         }
         else
         {
-            EventBus.OnEndGame?.Invoke();
+            OnEndGame?.Invoke();
         }
     }
-
-    private void OnEnable()
-    {
-        EventBus.OnChangeLevel.AddListener(ChangeLevel);
-    }
-
-    private void OnDisable()
-    {
-        EventBus.OnChangeLevel.RemoveListener(ChangeLevel);
-    }
 }
+
+[System.Serializable]
+public class UnityEventCardBundleData : UnityEvent<CardBundleData> { }

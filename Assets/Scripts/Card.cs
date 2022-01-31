@@ -1,9 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Card : MonoBehaviour
 {
+    [SerializeField] private UnityEvent OnCorrect;
+    [SerializeField] private UnityEvent OnWrong;
+
+    [SerializeField] private SpriteRenderer _spriteOfSymbol;
+
     private Shaker _shaker;
     private BouncerOnCorrect _bouncerOnCorrect;
 
@@ -22,31 +28,29 @@ public class Card : MonoBehaviour
     {
         if (_interactable)
         {
+            print("click");
             if (_purpose)
             {
+                print("right click");
                 _bouncerOnCorrect.enabled = true;
-                EventBus.OnCorrect?.Invoke();
+                OnCorrect?.Invoke();
             }
             else
             {
+                print("wrong click");
                 _shaker.enabled = true;
-                EventBus.OnWrong?.Invoke();
+                OnWrong?.Invoke();
             }
         }
     }
 
-    private void OffInteractable()
+    public void ChangeSprite(Sprite sprite)
     {
-        _interactable = false;
-    }    
-
-    private void OnEnable()
-    {
-        EventBus.OnEndGame.AddListener(OffInteractable);
+        _spriteOfSymbol.sprite = sprite;
     }
 
-    private void OnDisable()
+    public void OffInteractable()
     {
-        EventBus.OnEndGame.RemoveListener(OffInteractable);
+        _interactable = false;
     }
 }

@@ -13,12 +13,12 @@ public class Fader : MonoBehaviour
         _text = GetComponent<Text>();
     }
 
-    private void FadeIn()
+    public void FadeIn()
     {
         Fade(.7f, 1f);
     }
 
-    private void FadeOut()
+    public void FadeOut()
     {
         Fade(0, 1f);
     }
@@ -26,17 +26,5 @@ public class Fader : MonoBehaviour
     private void Fade(float value, float duration)
     {
         _text.DOFade(value, duration);
-    }
-
-    private void OnEnable()
-    {
-        EventBus.OnFadeIn.AddListener(FadeIn);
-        EventBus.OnFadeOut.AddListener(FadeOut);
-    }
-
-    private void OnDisable()
-    {
-        EventBus.OnFadeIn.RemoveListener(FadeIn);
-        EventBus.OnFadeOut.RemoveListener(FadeOut);
     }
 }

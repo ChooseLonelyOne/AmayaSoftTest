@@ -1,9 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class LevelStarter : MonoBehaviour
 {
+    [SerializeField] private UnityEvent OnFadeIn;
+    [SerializeField] private UnityEvent OnChangeLevel;
+
     private void Start()
     {
         StartLevel();
@@ -11,17 +15,7 @@ public class LevelStarter : MonoBehaviour
 
     private void StartLevel()
     {
-        EventBus.OnChangeLevel?.Invoke();
-        EventBus.OnStart?.Invoke();
-        EventBus.OnFadeIn?.Invoke();
-    }
-
-    private void OnEnable()
-    {
-        EventBus.OnRestart.AddListener(StartLevel);
-    }
-    private void OnDisable()
-    {
-        EventBus.OnRestart.RemoveListener(StartLevel);
+        OnChangeLevel?.Invoke();
+        OnFadeIn?.Invoke();
     }
 }

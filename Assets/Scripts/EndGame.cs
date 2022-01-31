@@ -17,7 +17,7 @@ public class EndGame : MonoBehaviour
         _button.SetActive(false);
     }
 
-    private void Restart()
+    public void Restart()
     {
         if (!_launched)
         {
@@ -25,7 +25,7 @@ public class EndGame : MonoBehaviour
         }
     }
 
-    private void End()
+    public void End()
     {
         _button.SetActive(true);
         _animator.SetTrigger("FadeIn");
@@ -39,15 +39,5 @@ public class EndGame : MonoBehaviour
         _loadScreen.SetTrigger("Close");
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-
-    private void OnEnable()
-    {
-        EventBus.OnEndGame.AddListener(End);
-    }
-
-    private void OnDisable()
-    {
-        EventBus.OnEndGame.RemoveListener(End);
     }
 }

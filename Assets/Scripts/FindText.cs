@@ -12,18 +12,8 @@ public class FindText : MonoBehaviour
     {
         _text = GetComponent<Text>();
     }
-    private void ChangeText(string text)
+    public void ChangeText(string text)
     {
         _text.text = "Find " + text;
-    }
-
-    private void OnEnable()
-    {
-        EventBus.OnFind.AddListener(ChangeText);
-    }
-
-    private void OnDisable()
-    {
-        EventBus.OnFind.RemoveListener(ChangeText);
     }
 }

@@ -8,7 +8,7 @@ public class BouncerOnCorrect : MonoBehaviour
     private Sequence _sequence;
     private bool _launched = false;
 
-    private void BounceOnCorrect()
+    public void BounceOnCorrect()
     {
         if (!_launched)
         {
@@ -32,16 +32,6 @@ public class BouncerOnCorrect : MonoBehaviour
 
         yield return new WaitForSeconds(.6f);
 
-        EventBus.OnChangeLevel?.Invoke();
-    }
-
-    private void OnEnable()
-    {
-        EventBus.OnCorrect.AddListener(BounceOnCorrect);
-    }
-
-    private void OnDisable()
-    {
-        EventBus.OnCorrect.RemoveListener(BounceOnCorrect);
+        FindObjectOfType<LevelChanger>().ChangeLevel();
     }
 }

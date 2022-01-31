@@ -34,12 +34,6 @@ public class Grid
         return new Vector3(OffsetCalculate(x, 0) * _cellSizeX, -OffsetCalculate(y, 1) * _cellSizeY);
     }
 
-    public void GetGridSize()
-    {
-        Debug.Log(_gridArray.GetLength(0) + " X");
-        Debug.Log(_gridArray.GetLength(1) + " Y");
-    }
-
     private float OffsetCalculate(float index, int kindOfLength)
     {
         float center = (float)_gridArray.GetLength(kindOfLength) / 2;

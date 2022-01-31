@@ -1,29 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class LevelCreator : MonoBehaviour
 {
+    [SerializeField] private UnityEventString OnFind;
+
     private Grid _grid;
 
     private float _sizeX;
     private float _sizeY;
-    private SpriteRenderer spriteRenderer;
+    private SpriteRenderer _spriteRenderer;
 
     private CardBundleData _data;
-    private List<GameObject> _cardList = new List<GameObject>();
+    private List<Card> _cardList = new List<Card>();
 
     private int _purposeIndex;
 
-    private void CreateLevel(CardBundleData data)
+    public void CreateLevel(CardBundleData data)
     {
         _data = data;
-        spriteRenderer = _data.Prefab.GetComponent<SpriteRenderer>();
-
+        _spriteRenderer = _data.Prefab.GetComponent<SpriteRenderer>();
         CleanLevel();
 
-        _sizeX = spriteRenderer.size.x;
-        _sizeY = spriteRenderer.size.y;
+        _sizeX = _spriteRenderer.size.x;
+        _sizeY = _spriteRenderer.size.y;
 
         _grid = new Grid(_data.GridSizeX, _data.GridSizeY, _sizeX, _sizeY, _data.CardData.Length);
 
@@ -37,13 +39,21 @@ public class LevelCreator : MonoBehaviour
                     break;
                 }
                 GameObject clone = Instantiate(data.Prefab, _grid.GetWorldPosition(x, y), Quaternion.identity, transform);
-                _cardList.Add(clone);
+                _cardList.Add(clone.GetComponent<Card>());
 
                 count++;
             }
         }
         _purposeIndex = RandomPurpose();
         InitClones();
+    }
+
+    public void OffInteractable()
+    {
+        for (int i = 0; i < _cardList.Count; i++)
+        {
+            _cardList[i].OffInteractable();
+        }
     }
 
     private int RandomPurpose()
@@ -56,14 +66,14 @@ public class LevelCreator : MonoBehaviour
     {
         for (int i = 0; i < _cardList.Count; i++)
         {
-            GameObject clone = _cardList[i];
+            Card clone = _cardList[i];
 
             clone.name = _data.CardData[i].Name;
-            clone.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = _data.CardData[i].Sprite;
+            clone.ChangeSprite(_data.CardData[i].Sprite);
         }
 
-        _cardList[_purposeIndex].GetComponent<Card>().Goal = true;
-        EventBus.OnFind?.Invoke(_cardList[_purposeIndex].name);
+        _cardList[_purposeIndex].Goal = true;
+        OnFind?.Invoke(_cardList[_purposeIndex].name);
     }
 
     private void CleanLevel()
@@ -74,14 +84,7 @@ public class LevelCreator : MonoBehaviour
         }
         _cardList.Clear();
     }
-
-    private void OnEnable()
-    {
-        EventBus.OnCreateLevel.AddListener(CreateLevel);
-    }
-
-    private void OnDisable()
-    {
-        EventBus.OnCreateLevel.RemoveListener(CreateLevel);
-    }
 }
+
+[System.Serializable]
+public class UnityEventString : UnityEvent<string> { }
