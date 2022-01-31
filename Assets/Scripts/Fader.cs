@@ -18,6 +18,7 @@ public class Fader : MonoBehaviour
         Fade(.7f, 1f);
     }
 
+    //оставил потому как метод он просто должен быть, учитывая наличие fadein
     public void FadeOut()
     {
         Fade(0, 1f);

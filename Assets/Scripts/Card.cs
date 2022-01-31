@@ -28,16 +28,13 @@ public class Card : MonoBehaviour
     {
         if (_interactable)
         {
-            print("click");
             if (_purpose)
             {
-                print("right click");
                 _bouncerOnCorrect.enabled = true;
                 OnCorrect?.Invoke();
             }
             else
             {
-                print("wrong click");
                 _shaker.enabled = true;
                 OnWrong?.Invoke();
             }

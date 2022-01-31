@@ -32,6 +32,7 @@ public class BouncerOnCorrect : MonoBehaviour
 
         yield return new WaitForSeconds(.6f);
 
+        //это супер не правильно, но мне пока не хватает мозгов сделать правильней
         FindObjectOfType<LevelChanger>().ChangeLevel();
     }
 }
